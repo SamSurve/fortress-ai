@@ -1,4 +1,4 @@
-﻿{
+{
   "services": {
     "frontend": {
       "root": "frontend/",
@@ -11,7 +11,7 @@
   },
   "rewrites": [
     {
-      "source": "/api/:path*",
+      "source": "/api/(.*)",
       "destination": {
         "service": "backend"
       }
