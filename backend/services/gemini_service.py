@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 from config import settings
 import models
-from services.document_service import extract_pdf_text_per_page, extract_pdf_page_count
+from services.document_service import _ensure_local
 
 SYSTEM_INSTRUCTION = """
 You are FORTRESS AI, an enterprise-grade private organizational AI assistant.
@@ -117,7 +117,9 @@ def process_document_with_gemini(document: models.Document, db: Session) -> bool
     Validates document structure, extracts page count, and prepares Gemini reference.
     """
     try:
-        if not os.path.exists(document.file_path):
+        # Resolve file path, downloading from Supabase if needed
+        local_path = _ensure_local(document.file_path)
+        if not os.path.exists(local_path):
             document.status = "FAILED"
             document.error_message = "File not found on server disk"
             db.commit()

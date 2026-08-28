@@ -4,7 +4,8 @@ import re
 from pathlib import Path
 from typing import Optional, Tuple
 from sqlalchemy.orm import Session
-from fastapi import UploadFile, HTTPException
+import requests
+from fastapi import HTTPException
 
 from config import settings
 import models
@@ -24,7 +25,41 @@ def format_file_size(size_in_bytes: int) -> str:
     else:
         return f"{size_in_bytes / (1024 * 1024):.2f} MB"
 
+def _download_from_supabase(supabase_path: str) -> str:
+    """Download a file from Supabase Storage to the writable uploads directory.
+    Returns the local file path.
+    """
+    bucket = settings.SUPABASE_BUCKET
+    # If path already includes bucket, split
+    if '/' in supabase_path:
+        parts = supabase_path.split('/', 1)
+        bucket = parts[0]
+        obj_path = parts[1]
+    else:
+        obj_path = supabase_path
+    url = f"{settings.SUPABASE_URL}/storage/v1/object/{bucket}/{obj_path}"
+    headers = {"Authorization": f"Bearer {settings.SUPABASE_KEY}"}
+    response = requests.get(url, headers=headers, stream=True)
+    if response.status_code != 200:
+        raise HTTPException(status_code=404, detail="Supabase file not found")
+    local_path = os.path.join(settings.UPLOADS_DIR, os.path.basename(obj_path))
+    os.makedirs(settings.UPLOADS_DIR, exist_ok=True)
+    with open(local_path, "wb") as f:
+        for chunk in response.iter_content(chunk_size=8192):
+            f.write(chunk)
+    return local_path
+
+
+def _ensure_local(file_path: str) -> str:
+    """Return a local file path, downloading from Supabase if necessary."""
+    if os.path.exists(file_path):
+        return file_path
+    # Assume file_path stores Supabase path (bucket/filename) when not local
+    return _download_from_supabase(file_path)
+
+
 def extract_pdf_page_count(file_path: str) -> int:
+    file_path = _ensure_local(file_path)
     """Extract page count from PDF file using pypdf or byte scan fallback."""
     try:
         import pypdf
@@ -46,6 +81,7 @@ def extract_pdf_page_count(file_path: str) -> int:
         return 1
 
 def extract_pdf_text_per_page(file_path: str) -> list[dict]:
+    file_path = _ensure_local(file_path)
     """Extract text by page for local context and verification."""
     pages_data = []
     try:
@@ -65,7 +101,7 @@ def extract_pdf_text_per_page(file_path: str) -> list[dict]:
                 # Basic text extraction from streams
                 streams = re.findall(r'stream\s*(.*?)\s*endstream', raw, re.DOTALL)
                 for idx, stream in enumerate(streams):
-                    clean_lines = re.findall(r'\((.*?)\)\s*Tj', stream)
+                    clean_lines = re.findall(r'\\((.*?)\\)\\s*Tj', stream)
                     if clean_lines:
                         pages_data.append({
                             "page_number": idx + 1,

@@ -7,7 +7,8 @@ from sqlalchemy.orm import Session
 from database import get_db
 import models
 import schemas
-from config import settings
+from uuid import uuid4
+from services.supabase_storage import upload_file_to_supabase
 from auth import get_current_user, require_admin, require_upload_access
 from services.audit_service import log_audit_event
 from services.document_service import sanitize_filename, extract_pdf_page_count, get_active_document
@@ -54,8 +55,16 @@ async def upload_document(
             detail="File exceeds maximum allowable size (50MB)."
         )
 
-    with open(target_path, "wb") as f:
-        f.write(file_bytes)
+    # Save to Supabase Storage
+    # Generate a unique filename to avoid collisions
+    unique_name = f"{uuid4().hex}_{filename}"
+    # Upload the file bytes to Supabase
+    supabase_path = upload_file_to_supabase(settings.SUPABASE_BUCKET, unique_name, file_bytes)
+    # Use the Supabase path as the stored file_path
+    target_path = supabase_path
+    # Optionally, we could keep a local copy for immediate processing, but the helper will download as needed.
+    # For processing metadata like page count, we need a local file. We'll download it temporarily via _ensure_local when needed.
+
 
     # Extract metadata
     page_count = extract_pdf_page_count(target_path)

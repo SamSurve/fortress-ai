@@ -11,7 +11,9 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
     DATABASE_URL: str = f"sqlite:///{BASE_DIR / 'fortress.db'}"
     UPLOADS_DIR: str = str(BASE_DIR / "uploads")
-    CORS_ORIGINS: str = ""
+    SUPABASE_URL: str = ""
+    SUPABASE_KEY: str = ""
+    SUPABASE_BUCKET: str = "documents"
 
     class Config:
         env_file = str(BASE_DIR / ".env")
