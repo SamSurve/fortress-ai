@@ -19,6 +19,22 @@ class Settings(BaseSettings):
         extra = "ignore"
 
 settings = Settings()
+# Determine a writable uploads directory. Prefer configured path, fallback to /tmp/uploads on permission error.
 
-# Ensure uploads directory exists
-os.makedirs(settings.UPLOADS_DIR, exist_ok=True)
+def _determine_uploads_dir() -> str:
+    configured = Path(settings.UPLOADS_DIR)
+    try:
+        os.makedirs(configured, exist_ok=True)
+        # Test write permission
+        test_file = configured / ".writable_test"
+        with open(test_file, "w") as f:
+            f.write("test")
+        os.remove(test_file)
+        return str(configured)
+    except Exception:
+        fallback = Path("/tmp/uploads")
+        os.makedirs(fallback, exist_ok=True)
+        return str(fallback)
+
+# Set the uploads directory for the application
+settings.UPLOADS_DIR = _determine_uploads_dir()
