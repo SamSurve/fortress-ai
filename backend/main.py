@@ -19,7 +19,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="FORTRESS AI API",
-    description="Private Organisational AI Assistant - SIH 2026 Prototype Backend",
+    description="Private Organisational AI Assistant - SIH 2024 Prototype Backend",
     version="1.0.0",
     lifespan=lifespan
 )
@@ -45,11 +45,11 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     )
 
 # Include Routers
-app.include_router(auth_router.router)
-app.include_router(document_router.router)
-app.include_router(chat_router.router)
-app.include_router(user_router.router)
-app.include_router(audit_router.router)
+app.include_router(auth_router.router, prefix="/api")
+app.include_router(document_router.router, prefix="/api")
+app.include_router(chat_router.router, prefix="/api")
+app.include_router(user_router.router, prefix="/api")
+app.include_router(audit_router.router, prefix="/api")
 
 @app.get("/health")
 def health_check():
