@@ -1,18 +1,26 @@
-{
-  "version": 2,
-  "builds": [
+﻿{
+  "services": {
+    "frontend": {
+      "root": "frontend/",
+      "framework": "nextjs"
+    },
+    "backend": {
+      "root": "backend/",
+      "entrypoint": "main:app"
+    }
+  },
+  "rewrites": [
     {
-      "src": "frontend/package.json",
-      "use": "@vercel/next"
+      "source": "/api/:path*",
+      "destination": {
+        "service": "backend"
+      }
     },
     {
-      "src": "backend/main.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb" }
+      "source": "/(.*)",
+      "destination": {
+        "service": "frontend"
+      }
     }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/backend/main.py" },
-    { "src": "/(.*)", "dest": "/frontend/$1" }
   ]
 }
