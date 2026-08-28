@@ -1,0 +1,117 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 4 0 R 5 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 9 0 R /F2 10 0 R >> >> >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 7 0 R /Resources << /Font << /F1 9 0 R /F2 10 0 R >> >> >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 8 0 R /Resources << /Font << /F1 9 0 R /F2 10 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 871 >>
+stream
+BT
+/F1 10 Tf
+14.5 TL
+50 750 Td
+/F2 13 Tf (FORTRESS INDUSTRIAL PLANT - ASSET HEALTH REPORT) Tj T* /F1 10 Tf
+(DOCUMENT ID: REP-2026-P101-V4) Tj T*
+(EQUIPMENT TAG: PUMP P-101 \(PRIMARY FEED WATER BOOSTER\)) Tj T*
+(LOCATION: SECTOR 4, TURBINE AUXILIARY BAY) Tj T*
+(DATE OF INSPECTION: AUGUST 14, 2026) Tj T*
+(LEAD INSPECTOR: MARCUS VANCE \(CERTIFIED ISO 18436-2 CATEGORY III\)) Tj T*
+() Tj T*
+T* /F2 11 Tf (1. EXECUTIVE SUMMARY) Tj T* /F1 10 Tf
+(A comprehensive condition monitoring and vibration analysis was conducted on Pump P-101 following reports of abnormal acoustic signatures during peak load operations.) Tj T*
+(The main issue identified in Pump P-101 is severe mechanical vibration and advanced outer race degradation on the drive-end \(DE\) spherical roller bearing \(SKF 22218 EK\).) Tj T*
+() Tj T*
+T* /F2 11 Tf (2. OPERATIONAL PARAMETERS RECORDED) Tj T* /F1 10 Tf
+(- Operating Speed: 2,980 RPM) Tj T*
+(- Flow Rate: 420 m3/hr \(Nominal: 450 m3/hr\)) Tj T*
+(- Suction Pressure: 3.2 bar) Tj T*
+(- Discharge Pressure: 18.6 bar) Tj T*
+(- Motor Drive Current: 84.5 Amperes) Tj T*
+ET
+endstream
+endobj
+7 0 obj
+<< /Length 895 >>
+stream
+BT
+/F1 10 Tf
+14.5 TL
+50 750 Td
+/F2 13 Tf (PUMP P-101 INSPECTION REPORT \(CONTINUED\) - PAGE 2) Tj T* /F1 10 Tf
+(ASSET: P-101 FEED WATER BOOSTER PUMP) Tj T*
+() Tj T*
+T* /F2 11 Tf (3. VIBRATION ANALYSIS & MEASUREMENTS) Tj T* /F1 10 Tf
+(Overall vibration levels were measured using triaxial accelerometers mounted on non-drive-end \(NDE\) and drive-end \(DE\) bearing housings.) Tj T*
+(- Measured Overall Vibration Level \(Drive-End Radial\): 7.2 mm/s RMS \(ISO 10816-3 Zone D: Critical/Unacceptable\)) Tj T*
+(- Baseline Acceptable Vibration: 1.8 mm/s RMS) Tj T*
+(- Peak Acceleration: 4.8 g pk-pk in the 1.2 kHz - 3.5 kHz demodulated frequency spectrum.) Tj T*
+(- High amplitude peaks observed at 118.4 Hz matching the Outer Race Ball Pass Frequency \(BPFO\).) Tj T*
+() Tj T*
+T* /F2 11 Tf (4. THERMOGRAPHIC FINDINGS) Tj T* /F1 10 Tf
+(- Drive-end bearing housing skin temperature: 88.4 deg C \(Exceeds maximum allowable limit of 70 deg C\).) Tj T*
+(- Lubricant oil sample: High iron particulate concentration \(142 ppm\), indicating active metal-to-metal spalling.) Tj T*
+ET
+endstream
+endobj
+8 0 obj
+<< /Length 877 >>
+stream
+BT
+/F1 10 Tf
+14.5 TL
+50 750 Td
+/F2 13 Tf (PUMP P-101 INSPECTION REPORT \(CONTINUED\) - PAGE 3) Tj T* /F1 10 Tf
+(ASSET: P-101 FEED WATER BOOSTER PUMP) Tj T*
+() Tj T*
+T* /F2 11 Tf (5. ROOT CAUSE ASSESSMENT) Tj T* /F1 10 Tf
+(The excessive vibration and thermal runaway are caused by lubrication starvation and contamination, which resulted in micro-spalling of the drive-end bearing raceway.) Tj T*
+() Tj T*
+T* /F2 11 Tf (6. RECOMMENDED MAINTENANCE ACTIONS) Tj T* /F1 10 Tf
+(The following immediate maintenance actions are mandated:) Tj T*
+(- Action 1 \(Critical\): Perform an immediate scheduled shutdown of Pump P-101 within 14 days.) Tj T*
+(- Action 2: Replace drive-end bearing \(SKF 22218 EK\) and inspect shaft sleeve for fretting corrosion.) Tj T*
+(- Action 3: Flush the oil reservoir and replenish with ISO VG 46 synthetic lubricating oil.) Tj T*
+(- Action 4: Verify dynamic alignment between motor and pump coupling \(tolerance < 0.05 mm radial runout\).) Tj T*
+(- Action 5: Re-commission and perform post-maintenance vibration verification.) Tj T*
+() Tj T*
+(REPORT APPROVED BY:) Tj T*
+(H. Thorne, Head of Plant Reliability Engineering) Tj T*
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+10 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000015 00000 n 
+0000000068 00000 n 
+0000000139 00000 n 
+0000000277 00000 n 
+0000000415 00000 n 
+0000000553 00000 n 
+0000001480 00000 n 
+0000002431 00000 n 
+0000003364 00000 n 
+0000003437 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+3515
+%%EOF
